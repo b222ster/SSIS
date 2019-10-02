@@ -1,0 +1,740 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/16/2018 8:14:49 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-SPKUPD3Q"
+  DTS:CreatorName="LAPTOP-SPKUPD3Q\Admin"
+  DTS:DTSID="{4AC115C8-CB08-45D7-8AB6-A8351318B1A7}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.101"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="Document_Databased_SSIS"
+  DTS:PackageType="5"
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{566B21CC-97AE-40F2-A803-9AED653C7E29}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Inside Archive xls]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{335ADE28-97B9-4C7C-AD47-750A8384DD71}"
+      DTS:ObjectName="Inside Archive xls">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\Admin\Desktop\Struct\Archive\tbl.xls" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-SPKUPD3Q\MYDB.TestDB]"
+      DTS:CreationName="ADO.NET:System.Data.OleDb.OleDbConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{3E927429-449D-48E8-8068-884D5B2EFE73}"
+      DTS:ObjectName="LAPTOP-SPKUPD3Q\MYDB.TestDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=LAPTOP-SPKUPD3Q;Initial Catalog=Hospital;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-SPKUPD3Q\MYDB.TestDB1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A448B354-349A-4924-B197-1F2A2F51F8F9}"
+      DTS:ObjectName="LAPTOP-SPKUPD3Q\MYDB.TestDB1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=LAPTOP-SPKUPD3Q;Initial Catalog=Hospital;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Outside Archive xls]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{57C7FF98-32D5-4BFE-A795-79A80BD73D94}"
+      DTS:ObjectName="Outside Archive xls">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\Admin\Desktop\Struct\tbl.xls" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[tbl.xls]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{E3AC28F2-9AC5-48F2-A03C-F81F619A743C}"
+      DTS:ObjectName="tbl.xls">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Admin\Desktop\Struct\tbl.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4A8663CB-F50E-4DD9-AB47-9C7B83500557}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DestinationPath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\Admin\Desktop\Struct\Archive\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{45DAC0BF-006F-46C2-86FD-0CC3E26C1D09}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::DestinationPath] +  @[User::TableName] + &quot;.xls&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="OutputhPath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\Admin\Desktop\Struct\Archive\.xls</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F89F5A76-8116-4098-9731-70B9FFE46897}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TableName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{413A83AD-D59B-4E00-995F-425606D658C5}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="TableNames">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\For Each table Document and Archive"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{9F66A741-7F66-44B4-B94A-A156A187517F}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="For Each table Document and Archive">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{0D256C0B-D8B3-4E04-9DEA-149BDC81408D}"
+        DTS:ObjectName="{0D256C0B-D8B3-4E04-9DEA-149BDC81408D}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::TableNames" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\For Each table Document and Archive\Archive File"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{C0513F4A-2F17-4357-937A-2F2C14CAB3F0}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Archive File"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskSourcePath="{57C7FF98-32D5-4BFE-A795-79A80BD73D94}"
+              TaskDestinationPath="User::OutputhPath"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{83392D1F-F8ED-4018-A030-F96590C7D3AE}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Copy Table Contents in Excel"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Excel Destination"
+                  componentClassID="Microsoft.ExcelDestination"
+                  contactInfo="Excel Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Excel Destination"
+                  name="Excel Destination"
+                  usesDispositions="true">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">Export$</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Excel Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[tbl.xls]"
+                      connectionManagerRefId="Package.ConnectionManagers[tbl.xls]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Excel Destination.Inputs[Excel Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Excel Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Excel Destination.Inputs[Excel Destination Input].Columns[TABLE_NAME]"
+                          cachedDataType="wstr"
+                          cachedLength="128"
+                          cachedName="TABLE_NAME"
+                          externalMetadataColumnId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Table_Name]"
+                          lineageId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Output].Columns[TABLE_NAME]" />
+                        <inputColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Excel Destination.Inputs[Excel Destination Input].Columns[COLUMN_NAME]"
+                          cachedDataType="wstr"
+                          cachedLength="128"
+                          cachedName="COLUMN_NAME"
+                          externalMetadataColumnId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Column_Name]"
+                          lineageId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Output].Columns[COLUMN_NAME]" />
+                        <inputColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Excel Destination.Inputs[Excel Destination Input].Columns[DATA_TYPE]"
+                          cachedDataType="wstr"
+                          cachedLength="180"
+                          cachedName="DATA_TYPE"
+                          externalMetadataColumnId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Data_Type]"
+                          lineageId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Output].Columns[DATA_TYPE]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Table_Name]"
+                          dataType="wstr"
+                          length="255"
+                          name="Table_Name" />
+                        <externalMetadataColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Column_Name]"
+                          dataType="wstr"
+                          length="255"
+                          name="Column_Name" />
+                        <externalMetadataColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Description]"
+                          dataType="wstr"
+                          length="255"
+                          name="Description" />
+                        <externalMetadataColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Data_Type]"
+                          dataType="wstr"
+                          length="255"
+                          name="Data_Type" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Excel Destination.Outputs[Excel Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Excel Destination Error Output"
+                      synchronousInputId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Excel Destination.Inputs[Excel Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Table Description"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT TABLE_NAME
+	,COLUMN_NAME
+	,TABLE_CATALOG
+	,DATA_TYPE + '(' + CAST(ISNULL(CHARACTER_MAXIMUM_LENGTH, '') AS VARCHAR(50)) + ')' AS DATA_TYPE
+FROM INFORMATION_SCHEMA.COLUMNS 
+WHERE 1 = 1 
+AND TABLE_NAME = ?</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"TableName:Input",{F89F5A76-8116-4098-9731-70B9FFE46897};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LAPTOP-SPKUPD3Q\MYDB.TestDB1]"
+                      connectionManagerRefId="Package.ConnectionManagers[LAPTOP-SPKUPD3Q\MYDB.TestDB1]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Output].Columns[TABLE_NAME]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Output].ExternalColumns[TABLE_NAME]"
+                          length="128"
+                          lineageId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Output].Columns[TABLE_NAME]"
+                          name="TABLE_NAME"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Output].Columns[COLUMN_NAME]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Output].ExternalColumns[COLUMN_NAME]"
+                          length="128"
+                          lineageId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Output].Columns[COLUMN_NAME]"
+                          name="COLUMN_NAME"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Output].Columns[TABLE_CATALOG]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Output].ExternalColumns[TABLE_CATALOG]"
+                          length="128"
+                          lineageId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Output].Columns[TABLE_CATALOG]"
+                          name="TABLE_CATALOG"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Output].Columns[DATA_TYPE]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Output].ExternalColumns[DATA_TYPE]"
+                          length="180"
+                          lineageId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Output].Columns[DATA_TYPE]"
+                          name="DATA_TYPE"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Output].ExternalColumns[TABLE_NAME]"
+                          dataType="wstr"
+                          length="128"
+                          name="TABLE_NAME" />
+                        <externalMetadataColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Output].ExternalColumns[COLUMN_NAME]"
+                          dataType="wstr"
+                          length="128"
+                          name="COLUMN_NAME" />
+                        <externalMetadataColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Output].ExternalColumns[TABLE_CATALOG]"
+                          dataType="wstr"
+                          length="128"
+                          name="TABLE_CATALOG" />
+                        <externalMetadataColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Output].ExternalColumns[DATA_TYPE]"
+                          dataType="wstr"
+                          length="180"
+                          name="DATA_TYPE" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Error Output].Columns[TABLE_NAME]"
+                          dataType="wstr"
+                          length="128"
+                          lineageId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Error Output].Columns[TABLE_NAME]"
+                          name="TABLE_NAME" />
+                        <outputColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Error Output].Columns[COLUMN_NAME]"
+                          dataType="wstr"
+                          length="128"
+                          lineageId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Error Output].Columns[COLUMN_NAME]"
+                          name="COLUMN_NAME" />
+                        <outputColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Error Output].Columns[TABLE_CATALOG]"
+                          dataType="wstr"
+                          length="128"
+                          lineageId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Error Output].Columns[TABLE_CATALOG]"
+                          name="TABLE_CATALOG" />
+                        <outputColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Error Output].Columns[DATA_TYPE]"
+                          dataType="wstr"
+                          length="180"
+                          lineageId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Error Output].Columns[DATA_TYPE]"
+                          name="DATA_TYPE" />
+                        <outputColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel.Paths[OLE DB Source Output]"
+                  endId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Excel Destination.Inputs[Excel Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\For Each table Document and Archive\Truncate Excel File"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{C3477295-1D11-415A-9C92-C5C6F40E2B84}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Excel File"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOverwriteDestFile="True"
+              TaskSourcePath="{335ADE28-97B9-4C7C-AD47-750A8384DD71}"
+              TaskDestinationPath="{57C7FF98-32D5-4BFE-A795-79A80BD73D94}" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\For Each table Document and Archive.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{DE572E8A-3A96-48E9-8E18-86B20AE43AB4}"
+          DTS:From="Package\For Each table Document and Archive\Truncate Excel File"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\For Each table Document and Archive.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{78181CD4-93DA-4B01-BED6-5B66E5069276}"
+          DTS:From="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\For Each table Document and Archive\Archive File" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{2806ED9F-D121-4AA2-971C-B80D73BE5E77}"
+          DTS:ObjectName="{2806ED9F-D121-4AA2-971C-B80D73BE5E77}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::TableName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\StoreTablesInVariable"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Store Distinct Tables in Variable"
+      DTS:DTSID="{E4E261A2-B934-4DF9-9349-60B7E4F9C39C}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="StoreTablesInVariable"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3E927429-449D-48E8-8068-884D5B2EFE73}"
+          SQLTask:SqlStatementSource="SELECT DISTINCT TABLE_NAME&#xA;FROM &#xA;    INFORMATION_SCHEMA.COLUMNS [Tables]"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::TableNames" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{F281DD2E-12CE-4DEB-8179-A971113E980C}"
+      DTS:From="Package\StoreTablesInVariable"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\For Each table Document and Archive" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="133,42"
+          Id="Package\For Each table Document and Archive\Archive File"
+          TopLeft="92,174" />
+        <NodeLayout
+          Size="266,42"
+          Id="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel"
+          TopLeft="25,90" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\For Each table Document and Archive\Truncate Excel File"
+          TopLeft="72,8" />
+        <EdgeLayout
+          Id="Package\For Each table Document and Archive.PrecedenceConstraints[Constraint]"
+          TopLeft="157,50">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,40"
+              Start="0,0"
+              End="0,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\For Each table Document and Archive.PrecedenceConstraints[Constraint 1]"
+          TopLeft="158.25,132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,42"
+              Start="0,0"
+              End="0,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="300,271"
+          Size="300,314"
+          Id="Package\For Each table Document and Archive"
+          TopLeft="233,183" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\StoreTablesInVariable"
+          TopLeft="296,68" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="385,110">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,73"
+              Start="0,0"
+              End="0,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="161,42"
+          Id="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description"
+          TopLeft="237.5,83.5" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Excel Destination"
+          TopLeft="240,280" />
+        <EdgeLayout
+          Id="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel.Paths[OLE DB Source Output]"
+          TopLeft="318.75,125.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,154.5"
+              Start="0,0"
+              End="0,147">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,147" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Excel Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\For Each table Document and Archive\Data Flow Copy Table Contents in Excel\Table Description">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
